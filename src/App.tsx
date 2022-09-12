@@ -1,1 +1,3 @@
-export default () => <div>App</div>
+import Routes from './routes';
+
+export default () => <Routes />
