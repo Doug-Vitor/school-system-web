@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
+
 import './Brand.scss'
 export default () =>
-    <a href="/" className="navbar-brand">
+    <Link to="/" className="navbar-brand">
         School system
-    </a>;
+    </Link>;

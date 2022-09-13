@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 export default () =>
     <ul>
-        <a href="#">
+        <Link to="#">
             Entrar
-        </a>
+        </Link>
     </ul>
