@@ -1,0 +1,36 @@
+nav {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 10vh;
+    padding: 0 8vh;
+
+    box-shadow: 0 30px 60px 2px var(--shadow-color);
+    
+    a, ul a {
+        margin: 1vh;
+        color: var(--text-color);
+        text-decoration: none;
+        transition: all .3s ease-in-out;
+
+        &:hover {
+            transform: scale(1.1);
+            text-decoration: underline;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        height: fit-content;
+
+        a, ul {
+            padding: 1vh;
+        }
+    }
+}

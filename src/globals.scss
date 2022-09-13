@@ -1,0 +1,21 @@
+$primary: #0e00ad;
+$text-color: #fff;
+$shadow-color: #c2c2c2;
+
+
+:root {
+    --primary-color: #{$primary};
+    --text-color: #{$text-color};
+    --shadow-color: #{$shadow-color};
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100vh;
+    font-weight: 400;
+}
