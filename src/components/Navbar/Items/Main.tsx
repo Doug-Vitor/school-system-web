@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 export default () =>
     <ul>
-        <Link to="#">
+        <Link to="/">
             Início
         </Link>
-        <Link to="#">
+        <Link to="/">
             Professores
         </Link>
     </ul>;
