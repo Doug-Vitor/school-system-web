@@ -1,12 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import authRoutes from './authentication';
+import errorsRoutes from './errors';
 
-import Home from '../pages/Home';
-import NotFound from '../pages/shared/NotFound';
-
-export default () =>
-    <BrowserRouter>
-        <Routes>
-            <Route caseSensitive path='/' element={<Home />} />
-            <Route path='*' element={<NotFound />} />
-        </Routes>
-    </BrowserRouter>
+export default new Array().concat(authRoutes, errorsRoutes);
