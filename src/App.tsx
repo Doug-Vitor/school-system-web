@@ -8,9 +8,12 @@ export default () =>
     <>
         <BrowserRouter>
             <Navbar />
-            <Routes>
-                <Route path='/' element={<Home />} />
-                {routes.map(({ path, element }, key) => <Route path={path} element={element} key={key} />)}
-            </Routes>
+
+            <main>
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    {routes.map(({ path, element }, key) => <Route path={path} element={element} key={key} />)}
+                </Routes>
+            </main>
         </BrowserRouter>
     </>;
