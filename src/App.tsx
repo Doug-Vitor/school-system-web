@@ -4,6 +4,7 @@ import routes from './routes';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 
+import './App.scss';
 export default () =>
     <>
         <BrowserRouter>

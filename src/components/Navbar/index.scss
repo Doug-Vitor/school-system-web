@@ -5,6 +5,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 
     height: 10vh;
     padding: 0 8vh;
@@ -28,7 +29,7 @@ nav {
 
 @media (max-width: 600px) {
     nav {
-        flex-direction: column;
+        justify-content: center;
         height: fit-content;
 
         a, ul {

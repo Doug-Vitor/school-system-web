@@ -1,4 +1,5 @@
 import { ChangeEventHandler, HTMLInputTypeAttribute } from "react"
+import './index.scss';
 
 interface Props {
     value: any

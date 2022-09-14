@@ -7,6 +7,8 @@ import PageTitle from "../../components/PageTitle/";
 import Input from "../../components/Input/";
 import Button from "../../components/Button";
 
+import './index.scss';
+
 const initialState: IUser = {
     username: '',
     password: '',
@@ -24,17 +26,17 @@ export default () => {
     const updateUserState = (fieldName: keyof typeof user, value: string) => setUser({...Object.assign(user, { [fieldName]: value })});
 
     return (
-        <article>
+        <article className="authentication-container">
             <PageTitle text={inSignUpMode ? "Cadastro de usuário" : "Login de usuário"} />
 
             <form>
                 { inSignUpMode ? 
-                    <Input onChange={event => updateUserState("email", event.target.value)} value={user.password} labelValue="E-mail" /> 
+                    <Input onChange={event => updateUserState("email", event.target.value)} value={user.email} labelValue="E-mail:" /> 
                     : false 
                 }
 
-                <Input onChange={event => updateUserState("username", event.target.value)} value={user.username} labelValue="Nome de usuário" />
-                <Input type="password" onChange={event => updateUserState("password", event.target.value)} value={user.password} labelValue="Senha" />
+                <Input onChange={event => updateUserState("username", event.target.value)} value={user.username} labelValue="Nome de usuário:" />
+                <Input type="password" onChange={event => updateUserState("password", event.target.value)} value={user.password} labelValue="Senha:" />
             
                 <Button type="submit" className="btn-success" text="Confirmar" /> 
             </form>

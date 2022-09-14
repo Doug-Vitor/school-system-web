@@ -1,9 +1,10 @@
-import { ButtonHTMLAttributes, MouseEventHandler } from "react"
+import { MouseEventHandler } from "react"
+import './index.scss';
 
 interface Props {
     text: string
     type?: "button" | "submit"
-    className?: string
+    className?: "btn-success" | "btn-info" | "btn-danger"
     onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
