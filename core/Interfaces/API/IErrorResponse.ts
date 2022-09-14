@@ -1,5 +1,5 @@
 export default interface IErrorResponse {
     statusCode: number
     errorMessage: string
-    data: any
+    data: Array<Record<string, string>>
 }
