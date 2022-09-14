@@ -14,17 +14,20 @@ nav {
 
     margin-bottom: 3.5vh;
     
-    a, ul a {
+    a, ul a, ul span {
         margin: 1vh;
         color: var(--text-color);
         text-decoration: none;
         transition: all .3s ease-in-out;
+        cursor: pointer;
 
         &:hover {
             transform: scale(1.1);
             text-decoration: underline;
         }
     }
+
+    ul span.authenticated-divisor { border: solid thin }
 }
 
 @media (max-width: 600px) {
