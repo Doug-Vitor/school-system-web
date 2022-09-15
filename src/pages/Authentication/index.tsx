@@ -1,5 +1,8 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+
+import { loginAsync, signupAsync } from '../../store/Authentication/promises';
 
 import IUser from '../../../core/Interfaces/Entities/IUser';
 
@@ -25,11 +28,18 @@ export default () => {
     const [user, setUser] = useState(initialState);
     const updateUserState = (fieldName: keyof typeof user, value: string) => setUser({...Object.assign(user, { [fieldName]: value })});
 
+
+    const dispatch = useDispatch();
+    const onSubmit = (event: FormEvent) => {
+        event.preventDefault();
+        dispatch(inSignUpMode ? signupAsync(user) : loginAsync(user));
+    }
+
     return (
         <article className="authentication-container">
             <PageTitle text={inSignUpMode ? "Cadastro de usuário" : "Login de usuário"} />
 
-            <form>
+            <form onSubmit={onSubmit}>
                 { inSignUpMode ? 
                     <Input onChange={event => updateUserState("email", event.target.value)} value={user.email} labelValue="E-mail:" /> 
                     : false 

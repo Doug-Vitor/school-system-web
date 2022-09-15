@@ -1,25 +1,23 @@
 import axios from 'axios';
-
 import IDefaultResponse from '../core/Interfaces/API/IDefaultResponse'
-import IErrorResponse from '../core/Interfaces/API/IErrorResponse'
 
 const api = axios.create({
    baseURL: "https://school-system-server.herokuapp.com/api/" 
 });
 
-const post = <T>() => async (url: string, object: T): Promise<IDefaultResponse<T>> => new Promise((resolve, reject) => {
+const post = async <TBody, TResponse>(url: string, object: TBody): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
     api.post(url, object).then(resp => resolve(resp.data)).catch(error => reject(error));
 });
 
-const get = <T>() => async (url: string, id?: string): Promise<IDefaultResponse<T>> => new Promise((resolve, reject) => {
+const get = async <TResponse>(url: string, id?: string): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
     api.get(url + `${id ?? ''}`).then(resp => resolve(resp.data)).catch(error => reject(error));
 });
 
-const update = <T>() => async (url: string, id: string): Promise<IDefaultResponse<T>> => new Promise((resolve, reject) => {
+const update = async <TBody, TResponse>(url: string, id: string, object: TBody): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
     api.patch(`${url}/${id}`).then(resp => resolve(resp.data)).catch(error => reject(error));
 });
 
-const remove = <T>() => async (url: string, id: string): Promise<IDefaultResponse<T>> => new Promise((resolve, reject) => {
+const remove = async <TResponse>(url: string, id: string): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
     api.delete(`${url}/${id}`).then(resp => resolve(resp.data)).catch(error => reject(error));
 });
 
