@@ -1,4 +1,4 @@
-import IAuthenticatedInfos from '../core/Interfaces/Entities/IAuthenticatedInfos';
+import IAuthenticatedInfos from '../core/Interfaces/API/IAuthenticatedInfos';
 
 const LOCAL_STORAGE_KEY = "user";
 const setStorageUser = (authenticatedInfos: IAuthenticatedInfos) => localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(authenticatedInfos));

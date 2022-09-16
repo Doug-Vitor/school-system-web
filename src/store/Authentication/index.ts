@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import IAuthenticatedInfos from '../../../core/Interfaces/Entities/IAuthenticatedInfos';
+import IAuthenticatedInfos from '../../../core/Interfaces/API/IAuthenticatedInfos';
 
 import { getStorageUser, onAuthSuccess, onLogout } from '../../../services/AuthServices';
 

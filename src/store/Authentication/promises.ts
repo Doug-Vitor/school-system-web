@@ -4,7 +4,7 @@ import { login, signup } from ".";
 import { AppDispatch } from "..";
 
 import IUser from "../../../core/Interfaces/Entities/IUser";
-import IAuthenticatedInfos from '../../../core/Interfaces/Entities/IAuthenticatedInfos';
+import IAuthenticatedInfos from '../../../core/Interfaces/API/IAuthenticatedInfos';
 
 const BASE_URL = 'authentication/'
 

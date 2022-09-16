@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 
-import IDefaultResponse from '../core/Interfaces/API/IDefaultResponse'
+import IDefaultResponse from '../core/Interfaces/API/Responses/IDefaultResponse'
 import IErrorResponse from '../core/Interfaces/API/IErrorResponse'
 import toastrNotification from '../services/ToastrServices';
 
