@@ -1,8 +1,10 @@
 import axios, { AxiosError } from 'axios';
-
-import IDefaultResponse from '../core/Interfaces/API/Responses/IDefaultResponse'
-import IErrorResponse from '../core/Interfaces/API/IErrorResponse'
 import toastrNotification from '../services/ToastrServices';
+
+import IDefaultRequestPayload from '../core/Interfaces/API/Requests/IDefaultRequestPayload';
+import IDefaultResponse from '../core/Interfaces/API/Responses/IDefaultResponse'
+import IErrorResponse from '../core/Interfaces/API/Responses/IErrorResponse';
+import { getStorageUser } from '../services/AuthServices';
 
 const api = axios.create({
     baseURL: "https://school-system-server.herokuapp.com/api/"
@@ -10,12 +12,13 @@ const api = axios.create({
 
 const onError = (error: AxiosError | unknown) => {
     const apiError = ((error as AxiosError).response?.data as IErrorResponse);
-    const errors = apiError.data ?? apiError.errorMessage;
+    const errors = Object.keys(apiError.data).length ? apiError.data : apiError.errorMessage;
     toastrNotification(errors, "error");
 }
 
-const post = async <TBody, TResponse>(url: string, object: TBody): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
-    api.post(url, object)
+const post = async <TBody, TResponse>(requestPayload: IDefaultRequestPayload, object: TBody): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
+    const payload = getRequestPayload(requestPayload);
+    api.post(payload.url, object, { headers: payload.headers })
         .then(resp => resolve(resp.data))
         .catch((error: AxiosError | unknown) => {
             onError(error);
@@ -23,8 +26,10 @@ const post = async <TBody, TResponse>(url: string, object: TBody): Promise<IDefa
         });
 });
 
-const get = async <TResponse>(url: string, id?: string): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
-    api.get(url + `${id ?? ''}`)
+const get = async <TResponse>(requestPayload: IDefaultRequestPayload, id?: string): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
+    const payload = getRequestPayload(requestPayload);
+    payload.url += id ?? '';
+    api.get(payload.url, { headers: payload.headers })
         .then(resp => resolve(resp.data))
         .catch((error: AxiosError | unknown) => {
             onError(error);
@@ -32,8 +37,10 @@ const get = async <TResponse>(url: string, id?: string): Promise<IDefaultRespons
         });
 });
 
-const update = async <TBody, TResponse>(url: string, id: string, object: TBody): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
-    api.patch(`${url}/${id}`)
+const update = async <TBody, TResponse>(requestPayload: IDefaultRequestPayload, id: string, object: TBody): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
+    const payload = getRequestPayload(requestPayload);
+    payload.url += id ?? '';
+    api.patch(payload.url, object, { headers: payload.headers })
         .then(resp => resolve(resp.data))
         .catch((error: AxiosError | unknown) => {
             onError(error);
@@ -41,13 +48,28 @@ const update = async <TBody, TResponse>(url: string, id: string, object: TBody):
         });
 });
 
-const remove = async <TResponse>(url: string, id: string): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
-    api.delete(`${url}/${id}`)
+const remove = async <TResponse>(requestPayload: IDefaultRequestPayload, id: string): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
+    const payload = getRequestPayload(requestPayload);
+    payload.url += id ?? '';
+    api.delete(payload.url, { headers: payload.headers })
         .then(resp => resolve(resp.data))
         .catch((error: AxiosError | unknown) => {
             onError(error);
             reject(error)
         });
 });
+
+const getRequestPayload = (requestPayload: IDefaultRequestPayload) => {
+    const payload = {
+        url: requestPayload.url,
+        ...requestPayload.protectedArea && {
+            headers: {
+                Authorization: getStorageUser().token.generatedToken
+            }
+        }
+    }
+
+    return { ...payload };
+}
 
 export { post, get, update, remove }

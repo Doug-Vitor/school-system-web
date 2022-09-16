@@ -1,4 +1,4 @@
 export default interface IDefaultRequestPayload {
-    url: URL | string
+    url: string
     protectedArea?: boolean
 }

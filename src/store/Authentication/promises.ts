@@ -6,11 +6,11 @@ import { AppDispatch } from "..";
 import IUser from "../../../core/Interfaces/Entities/IUser";
 import IAuthenticatedInfos from '../../../core/Interfaces/API/IAuthenticatedInfos';
 
-const BASE_URL = 'authentication/'
+const BASE_URL = 'authentication/';
 
 export const loginAsync = (user: IUser): any => {
     return async function (dispatch: AppDispatch) {
-        const authenticatedInfos = (await post<IUser, IAuthenticatedInfos>(BASE_URL + 'login', user)).data;
+        const authenticatedInfos = (await post<IUser, IAuthenticatedInfos>({ url: BASE_URL + "login" }, user)).data;
         authenticatedInfos.isAuthenticated = true;
         dispatch(login(authenticatedInfos));
     }
@@ -18,7 +18,7 @@ export const loginAsync = (user: IUser): any => {
 
 export const signupAsync = (user: IUser): any => {
     return async function (dispatch: AppDispatch) {
-        const authenticatedInfos = (await post<IUser, IAuthenticatedInfos>(BASE_URL + 'signup', user)).data;
+        const authenticatedInfos = (await post<IUser, IAuthenticatedInfos>({ url: BASE_URL + "signup" }, user)).data;
         authenticatedInfos.isAuthenticated = true;
         dispatch(signup(authenticatedInfos));
     }
