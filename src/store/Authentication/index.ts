@@ -7,9 +7,12 @@ const initialState: IAuthenticatedInfos = {
     isAuthenticated: false,
     authenticatedUserId: '',
     authenticatedUsername: '',
-    expirationDate: new Date(),
+    ownsTeacherProfile: false,
     isAdmin: false,
-    generatedToken: ''
+    token: {
+        generatedToken: '',
+        expirationDate: new Date(),
+    }
 }
 
 const auth = createSlice({
