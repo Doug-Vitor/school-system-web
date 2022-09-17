@@ -2,7 +2,10 @@ export default interface IAuthenticationInfos {
     isAuthenticated: boolean
     authenticatedUserId: string
     authenticatedUsername: string
+    ownsTeacherProfile: boolean
     isAdmin: boolean
-    generatedToken: string
-    expirationDate: Date
+    token: {
+        generatedToken: string
+        expirationDate: Date
+    }
 }

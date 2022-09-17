@@ -1,15 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import IAuthenticatedInfos from '../../../core/Interfaces/Entities/IAuthenticatedInfos';
 
+import IAuthenticatedInfos from '../../../core/Interfaces/API/IAuthenticatedInfos';
 import { getStorageUser, onAuthSuccess, onLogout } from '../../../services/AuthServices';
 
 const initialState: IAuthenticatedInfos = {
     isAuthenticated: false,
     authenticatedUserId: '',
     authenticatedUsername: '',
-    expirationDate: new Date(),
+    ownsTeacherProfile: false,
     isAdmin: false,
-    generatedToken: ''
+    token: {
+        generatedToken: '',
+        expirationDate: new Date(),
+    }
 }
 
 const auth = createSlice({
@@ -17,19 +20,19 @@ const auth = createSlice({
     initialState: getStorageUser() ?? initialState,
 
     reducers: {
-        login(state: any, action: PayloadAction<IAuthenticatedInfos>) {
-            state = action.payload;
+        login(state, action: PayloadAction<IAuthenticatedInfos>) {
+            state = { ...action.payload }
             onAuthSuccess(action.payload);
         },
 
-        signup(state: any, action: PayloadAction<IAuthenticatedInfos>) {
-            state = action.payload;
+        signup(state, action: PayloadAction<IAuthenticatedInfos>) {
+            state = { ...action.payload }
             onAuthSuccess(action.payload);
         },
 
-        logout(state: any) {
-            state = initialState;
-            onLogout();
+        logout(state, action?: PayloadAction<string>) {
+            state = { ...initialState }
+            onLogout(action?.payload);
         }
     }
 });
