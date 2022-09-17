@@ -1,12 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { publicRoutes, privateRoutes } from './routes';
 
+import Protected from './components/Area/Protected';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 
 import './App.scss';
-import Protected from './components/Area/Protected';
-
 export default () =>
     <>
         <BrowserRouter>

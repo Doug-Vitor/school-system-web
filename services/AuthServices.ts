@@ -7,9 +7,9 @@ const removeStorageUser = () => localStorage.removeItem(LOCAL_STORAGE_KEY);
 
 const redirect = (url?: string) => location.href = url ?? '/';
 
-const onAuthSuccess = (authenticatedInfos: IAuthenticatedInfos) => {
+const onAuthSuccess = (authenticatedInfos: IAuthenticatedInfos, redirectToUrl?: string) => {
     setStorageUser(authenticatedInfos);
-    redirect();
+    redirect(redirectToUrl);
 }
 
 const onLogout = (redirectToUrl?: string) => {
