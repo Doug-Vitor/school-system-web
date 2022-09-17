@@ -6,7 +6,10 @@ import auth from './Authentication/';
 const store = configureStore({
     reducer: {
         auth
-    }
+    },
+    middleware: getDefaultMiddleware => getDefaultMiddleware({
+        serializableCheck: false
+    })
 });
 
 export type RootState = ReturnType<typeof store.getState>;

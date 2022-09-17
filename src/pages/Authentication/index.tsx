@@ -11,6 +11,7 @@ import Input from "../../components/Input/";
 import Button from "../../components/Button";
 
 import './index.scss';
+import { info } from "toastr";
 
 const initialState: IUser = {
     username: '',
@@ -20,14 +21,16 @@ const initialState: IUser = {
 }
 
 export default () => {
-    const [searchQuery, _] = useSearchParams();    
-
+    const [searchQuery, _] = useSearchParams();
+    
     const [inSignUpMode, setInSignUpMode] = useState(false);
-    useEffect(() => setInSignUpMode(searchQuery.get("inSignupMode") as unknown as boolean), [searchQuery]);
+    useEffect(() => {
+        setInSignUpMode(searchQuery.get("inSignupMode") as unknown as boolean);
+        if (searchQuery.get("loginRequired")) info("Você precisa estar autenticado para prosseguir.");
+    }, [searchQuery]);
 
     const [user, setUser] = useState(initialState);
     const updateUserState = (fieldName: keyof typeof user, value: string) => setUser({...Object.assign(user, { [fieldName]: value })});
-
 
     const dispatch = useDispatch();
     const onSubmit = (event: FormEvent) => {
