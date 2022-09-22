@@ -2,10 +2,12 @@ import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
 import auth from './Authentication/';
+import subject from './Subjects'
 
 const store = configureStore({
     reducer: {
-        auth
+        auth,
+        subject
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware({
         serializableCheck: false
