@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import ISubject from '../../../core/Interfaces/Entities/Core/ISubject';
 
-const initialState: Array<ISubject> = [];
+const initialState = {
+    subjects: <Array<ISubject>>[]
+}
 
 const subject = createSlice({
     name: 'subject',
@@ -9,7 +11,7 @@ const subject = createSlice({
 
     reducers: {
         getAll(state, action: PayloadAction<ISubject[]>) {
-            state = { ...action.payload }
+            state.subjects = action.payload;
         }
     }
 })

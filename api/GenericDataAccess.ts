@@ -60,11 +60,13 @@ const remove = async <TResponse>(requestPayload: IDefaultRequestPayload, id: str
 });
 
 const getRequestPayload = (requestPayload: IDefaultRequestPayload) => {
+    const { url, protectedArea } = requestPayload;
+
     const payload = {
-        url: requestPayload.url,
-        ...requestPayload.protectedArea && {
+        url: protectedArea ? 'protected/' + url : url,
+        ...protectedArea && {
             headers: {
-                Authorization: getStorageUser().token.generatedToken
+                Authorization: 'Bearer ' + getStorageUser().token.generatedToken
             }
         }
     }
