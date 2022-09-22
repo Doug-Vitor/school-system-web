@@ -1,5 +1,7 @@
 import { MouseEventHandler } from "react"
 
+import './index.scss'
+
 export interface SelectOption {
     id: string
     optionText: string

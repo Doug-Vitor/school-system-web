@@ -5,9 +5,12 @@ import { getAllAsync as getAllClassroomsAsync } from "../../store/Classrooms/pro
 import { getAllAsync as getAllSubjectsAsync } from "../../store/Subjects/promises";
 
 import Select, { SelectOption } from "../Select";
+import DynamicActions from '../Form/DynamicActions';
+
 import IClassroom from "../../../core/Interfaces/Entities/Core/IClassroom";
 import ISubject from "../../../core/Interfaces/Entities/Core/ISubject";
 
+import './SchoolDatas.scss';
 export default () => {
    const { subjects } = useSelector((state: RootState) => state.subject);
    const { classrooms } = useSelector((state: RootState) => state.classroom);
@@ -21,8 +24,19 @@ export default () => {
 
    return (
       <div className="school-datas-container">
-         <Select onClick={() => onSelectClick("subjects")} defaultLabel="Matérias" options={mapSubjectsToSelectOption(subjects)} />
-         <Select onClick={() => onSelectClick("classrooms")} defaultLabel="Sala de aulas" options={mapClassroomsToSelectOption(classrooms)} />
+         <div className="subjects">
+            <div>
+               <Select onClick={() => onSelectClick("subjects")} defaultLabel="Matérias" options={mapSubjectsToSelectOption(subjects)} />
+               <DynamicActions onPlusClick={() => { }} onDeleteClick={() => { }} />
+            </div>
+         </div>
+
+         <div className="classrooms">
+            <div>
+               <Select onClick={() => onSelectClick("classrooms")} defaultLabel="Sala de aulas" options={mapClassroomsToSelectOption(classrooms)} />
+               <DynamicActions onPlusClick={() => { }} onDeleteClick={() => { }} />
+            </div>
+         </div>
       </div>
    )
 }
