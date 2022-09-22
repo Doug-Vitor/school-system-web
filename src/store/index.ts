@@ -3,11 +3,13 @@ import { useDispatch } from "react-redux";
 
 import auth from './Authentication/';
 import subject from './Subjects'
+import classroom from './Classrooms'
 
 const store = configureStore({
     reducer: {
         auth,
-        subject
+        subject,
+        classroom
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware({
         serializableCheck: false
