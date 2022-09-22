@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 import { loginAsync, signupAsync } from '../../store/Authentication/promises';
+import { info } from "toastr";
 
 import IUser from '../../../core/Interfaces/Entities/Authentication/IUser';
 
@@ -10,8 +11,9 @@ import PageTitle from "../../components/PageTitle/";
 import Input from "../../components/Input/";
 import Button from "../../components/Button";
 
+import updateState from '../../helpers/state';
+
 import './index.scss';
-import { info } from "toastr";
 
 const initialState: IUser = {
     username: '',
@@ -30,7 +32,6 @@ export default () => {
     }, [searchQuery]);
 
     const [user, setUser] = useState(initialState);
-    const updateUserState = (fieldName: keyof typeof user, value: string) => setUser({...Object.assign(user, { [fieldName]: value })});
 
     const dispatch = useDispatch();
     const onSubmit = (event: FormEvent) => {
@@ -44,12 +45,12 @@ export default () => {
 
             <form onSubmit={onSubmit}>
                 { inSignUpMode ? 
-                    <Input onChange={event => updateUserState("email", event.target.value)} value={user.email} labelValue="E-mail:" /> 
+                    <Input onChange={event => updateState(user, "email", event.target.value, setUser)} value={user.email} labelValue="E-mail:" /> 
                     : false 
                 }
 
-                <Input onChange={event => updateUserState("username", event.target.value)} value={user.username} labelValue="Nome de usuário:" />
-                <Input type="password" onChange={event => updateUserState("password", event.target.value)} value={user.password} labelValue="Senha:" />
+                <Input onChange={event => updateState(user, "username", event.target.value, setUser)} value={user.username} labelValue="Nome de usuário:" />
+                <Input type="password" onChange={event => updateState(user, "password", event.target.value, setUser)} value={user.password} labelValue="Senha:" />
             
                 <Button type="submit" className="btn-success" text="Confirmar" /> 
             </form>

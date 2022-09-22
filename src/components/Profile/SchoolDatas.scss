@@ -7,12 +7,21 @@
     .subjects, .classrooms {
         max-width: 50%;
         
-        div { margin: 2vw; }
+        div { margin-bottom: 2vw }
     }
 
     @media (max-width: 1200px) {
         width: 100%;
         flex-direction: column;
         justify-content: center;
+
+        .subjects, .classrooms {
+            max-width: 50%;
+            
+            div {
+                display: flex;
+                flex-direction: column;
+            }
+        }
     }
 }
