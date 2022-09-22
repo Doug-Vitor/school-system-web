@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 
 import { loginAsync, signupAsync } from '../../store/Authentication/promises';
 
-import IUser from '../../../core/Interfaces/Entities/IUser';
+import IUser from '../../../core/Interfaces/Entities/Authentication/IUser';
 
 import PageTitle from "../../components/PageTitle/";
 import Input from "../../components/Input/";

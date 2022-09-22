@@ -3,7 +3,7 @@ import { post } from '../../../api/GenericDataAccess';
 import { login, signup } from ".";
 import { AppDispatch } from "..";
 
-import IUser from "../../../core/Interfaces/Entities/IUser";
+import IUser from "../../../core/Interfaces/Entities/Authentication/IUser";
 import IAuthenticatedInfos from '../../../core/Interfaces/API/IAuthenticatedInfos';
 
 const BASE_URL = 'authentication/';
