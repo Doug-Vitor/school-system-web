@@ -2,12 +2,14 @@ import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
 import auth from './Authentication/';
+import teachers from "./teachers";
 import subject from './Subjects'
 import classroom from './Classrooms'
 
 const store = configureStore({
     reducer: {
         auth,
+        teachers,
         subject,
         classroom
     },
