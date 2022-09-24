@@ -2,7 +2,7 @@ import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
 import auth from './Authentication/';
-import teachers from "./teachers";
+import teachers from "./Teachers";
 import subject from './Subjects'
 import classroom from './Classrooms'
 

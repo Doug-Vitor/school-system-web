@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "../../../store"
 import { getAllAsync } from "../../../store/Subjects/promises";
-import { decrementArray, incrementArray, IUpdateArrayPayload, updateArray } from "../../../store/teachers";
+import { decrementArray, incrementArray, IUpdateArrayPayload, updateArray } from "../../../store/Teachers";
 
 import Select, { SelectOption } from "../../Select";
 import DynamicActions from "../../Form/DynamicActions";
@@ -22,12 +22,12 @@ export default () => {
 
     return (
         <div>
-            {subjectsIds.map((subjectIds, index) => {
+            {subjectsIds.map((subjectId, index) => {
                 const payload: IUpdateArrayPayload = { key: "subjectsIds", index }
 
                 return (
-                    <div>
-                        <Select onChange={e => { dispatch(updateArray({ ...payload, value: e.target.value })) }} options={options} defaultLabel="Selecionar matéria." selectedId={subjectIds} />
+                    <div key={subjectId}>
+                        <Select onChange={e => { dispatch(updateArray({ ...payload, value: e.target.value })) }} options={options} defaultLabel="Selecionar matéria." selectedId={subjectId} />
                         <DynamicActions
                             onPlusClick={() => dispatch(incrementArray(payload))}
                             onDeleteClick={() => dispatch(decrementArray(payload))}
