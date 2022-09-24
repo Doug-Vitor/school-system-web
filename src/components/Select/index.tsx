@@ -11,7 +11,7 @@ interface Props {
     defaultLabel?: string
     options: Array<SelectOption>
     selectedId?: string
-    onChange: ChangeEventHandler
+    onChange: ChangeEventHandler<HTMLSelectElement>
 }
 
 export default (props: Props) => {
