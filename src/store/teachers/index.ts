@@ -11,8 +11,8 @@ const initialState = {
         phoneNumber: '',
         realId: '',
         zipCode: '',
-        subjectsIds: [],
-        classroomsIds: [],
+        subjectsIds: [''],
+        classroomsIds: [''],
         userId: getStorageUser().authenticatedUserId,
     },
     profiles: <Array<ITeacher>>[]

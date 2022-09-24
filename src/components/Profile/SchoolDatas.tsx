@@ -14,6 +14,7 @@ import ISubject from "../../../core/Interfaces/Entities/Core/ISubject";
 
 import './SchoolDatas.scss';
 export default () => {
+   const { profile } = useSelector((state: RootState) => state.teachers);
    const { subjects } = useSelector((state: RootState) => state.subject);
    const { classrooms } = useSelector((state: RootState) => state.classroom);
 
@@ -24,32 +25,43 @@ export default () => {
    return (
       <div className="school-datas-container">
          <div className="subjects">
-            <div>
-               <Select onChange={() => { }} defaultLabel="Matérias" options={mapSubjectsToSelectOption(subjects)} />
-               <DynamicActions onPlusClick={() => { }} onDeleteClick={() => { }} />
-            </div>
+            <div>{getProfileSubjects(profile.subjectsIds, subjects)}</div>
          </div>
 
          <div className="classrooms">
-            <div>
-               <Select onChange={() => { }} defaultLabel="Sala de aulas" options={mapClassroomsToSelectOption(classrooms)} />
-               <DynamicActions onPlusClick={() => { }} onDeleteClick={() => { }} />
-            </div>
+            <div>{getProfileClassrooms(profile.classroomsIds, classrooms)}</div>
          </div>
       </div>
    )
 }
 
-const mapSubjectsToSelectOption = (subjects: ISubject[]) => subjects.map((subject): SelectOption => {
-   return {
-      id: subject.id,
-      optionText: subject.theme
-   }
-});
+const getProfileSubjects = (subjectsIds: string[], subjects: ISubject[]) => {
+   const subjectsOptions = subjects.map((subject): SelectOption => {
+      return {
+         id: subject.id,
+         optionText: subject.theme
+      }
+   })
 
-const mapClassroomsToSelectOption = (classrooms: IClassroom[]) => classrooms.map((classroom): SelectOption => {
-   return {
-      id: classroom.id,
-      optionText: classroom.room
-   }
-});
+   return subjectsIds.map(subjectId => (
+      <div>
+         <Select onChange={() => { }} defaultLabel="Matérias" options={subjectsOptions} selectedId={subjectId} />
+         <DynamicActions onPlusClick={() => { }} onDeleteClick={() => { }} />
+      </div>
+   ));
+}
+const getProfileClassrooms = (classroomsIds: string[], classrooms: IClassroom[]) => {
+   const classroomsOptions = classrooms.map((classroom): SelectOption => {
+      return {
+         id: classroom.id,
+         optionText: classroom.room
+      }
+   })
+
+   return classroomsIds.map(classroomId => (
+      <div>
+         <Select onChange={() => { }} defaultLabel="Sala de aulas" options={classroomsOptions} selectedId={classroomId} />
+         <DynamicActions onPlusClick={() => { }} onDeleteClick={() => { }} />
+      </div>
+   ))
+}
