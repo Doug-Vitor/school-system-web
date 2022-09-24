@@ -1,5 +1,7 @@
-import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
+
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { getAllAsync as getAllClassroomsAsync } from "../../store/Classrooms/promises";
 import { getAllAsync as getAllSubjectsAsync } from "../../store/Subjects/promises";
@@ -16,24 +18,21 @@ export default () => {
    const { classrooms } = useSelector((state: RootState) => state.classroom);
 
    const dispatch = useDispatch();
-
-   const onSelectClick = (componentClicked: "classrooms" | "subjects") => {
-      if (componentClicked === "subjects" && !subjects.length) dispatch(getAllSubjectsAsync());
-      else if (!classrooms.length) dispatch(getAllClassroomsAsync());
-   }
+   useEffect(() => { if (!subjects.length) dispatch(getAllSubjectsAsync()) }, subjects)
+   useEffect(() => { if (!classrooms.length) dispatch(getAllClassroomsAsync()) }, classrooms)
 
    return (
       <div className="school-datas-container">
          <div className="subjects">
             <div>
-               <Select onClick={() => onSelectClick("subjects")} defaultLabel="Matérias" options={mapSubjectsToSelectOption(subjects)} />
+               <Select onChange={() => { }} defaultLabel="Matérias" options={mapSubjectsToSelectOption(subjects)} />
                <DynamicActions onPlusClick={() => { }} onDeleteClick={() => { }} />
             </div>
          </div>
 
          <div className="classrooms">
             <div>
-               <Select onClick={() => onSelectClick("classrooms")} defaultLabel="Sala de aulas" options={mapClassroomsToSelectOption(classrooms)} />
+               <Select onChange={() => { }} defaultLabel="Sala de aulas" options={mapClassroomsToSelectOption(classrooms)} />
                <DynamicActions onPlusClick={() => { }} onDeleteClick={() => { }} />
             </div>
          </div>

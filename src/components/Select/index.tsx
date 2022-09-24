@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react"
+import { ChangeEventHandler } from "react"
 
 import './index.scss'
 
@@ -9,14 +9,21 @@ export interface SelectOption {
 
 interface Props {
     defaultLabel?: string
-    options?: Array<SelectOption>
-    onClick: MouseEventHandler
+    options: Array<SelectOption>
+    selectedId?: string
+    onChange: ChangeEventHandler
 }
 
-export default (props: Props) =>
-    <select onClick={props.onClick}>
-        <option defaultChecked={true}>{props.defaultLabel ?? "Selecione uma opção"}</option>
-        {props.options?.map(getSelectOptions)}
-    </select>
+export default (props: Props) => {
+    const { defaultLabel, selectedId, options, onChange } = props;
 
-const getSelectOptions = (value: SelectOption) => <option key={value.id} value={value.id}>{value.optionText}</option>
+    const getSelectOptions = () =>
+        options.map(value => <option key={value.id} selected={value.id === selectedId} value={value.id}>{value.optionText}</option>)
+
+    return (
+        <select onChange={onChange}>
+            <option selected={selectedId === ''}>{defaultLabel ?? "Selecione uma opção"}</option>
+            {getSelectOptions()}
+        </select>
+    )
+}
