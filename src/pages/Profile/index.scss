@@ -11,10 +11,13 @@ article.profile-container {
     box-shadow: 10px 1px 16px var(--shadow-color);
 
     form {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
         width: 90%;
+
+        div.form-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
 
         @media (max-width: 600px) {
             flex-direction: column;

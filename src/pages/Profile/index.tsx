@@ -21,10 +21,13 @@ export default () => {
             <PageTitle text="Meu perfil" />
 
             <form>
-                <PersonalDatas />
-                <SchoolDatas />
+                <div className="form-container">
+                    <PersonalDatas />
+                    <SchoolDatas />
+                </div>
+
+                <Button type="submit" className="btn-success" text="Salvar informações" />
             </form>
-            <Button type="submit" className="btn-success" text="Salvar informações" />
         </article >
     );
 }
