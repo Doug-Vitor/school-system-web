@@ -9,7 +9,7 @@ import Select, { SelectOption } from "../../Select";
 import DynamicActions from "../../Button/DynamicActions";
 
 export default () => {
-    const { subjectsIds } = useSelector((state: RootState) => state.teachers.profile);
+    const { inEditMode, subjectsIds } = useSelector((state: RootState) => state.teachers.profile);
     const { subjects } = useSelector((state: RootState) => state.subject);
 
     const dispatch = useDispatch();
@@ -27,11 +27,14 @@ export default () => {
 
                 return (
                     <div key={subjectId}>
-                        <Select onChange={e => { dispatch(updateArray({ ...payload, value: e.target.value })) }} options={options} defaultLabel="Selecionar matéria." selectedId={subjectId} />
-                        <DynamicActions
-                            onPlusClick={() => dispatch(incrementArray(payload))}
-                            onDeleteClick={() => dispatch(decrementArray(payload))}
-                        />
+                        <Select disabled={!inEditMode} onChange={e => { dispatch(updateArray({ ...payload, value: e.target.value })) }} options={options} defaultLabel="Selecionar matéria." selectedId={subjectId} />
+                        {
+                            inEditMode ?
+                                <DynamicActions
+                                    onPlusClick={() => dispatch(incrementArray(payload))}
+                                    onDeleteClick={() => dispatch(decrementArray(payload))}
+                                /> : false
+                        }
                     </div>
                 )
             })}

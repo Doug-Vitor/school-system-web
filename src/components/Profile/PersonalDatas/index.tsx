@@ -37,11 +37,11 @@ export default () => {
     }
     return (
         <div className="personal-datas-container">
-            <Input labelValue="Nome completo" onChange={e => updateState("name", e.target.value)} value={profile.name} />
-            <DatePicker labelValue="Data de nascimento" onChange={e => updateState("birthdate", e.toString())} value={profile.birthdate} />
-            <Input labelValue="Número de telefone" onChange={e => updatePhoneNumber(e.target.value)} value={profile.phoneNumber} />
-            <Input labelValue="Código postal (CEP)" onChange={e => updateZipCode(e.target.value)} value={profile.zipCode} />
-            <Input labelValue="Cadastro de pessoa física (CPF)" onChange={e => updateRealId(e.target.value)} value={profile.realId} />
+            <Input disabled={!profile.inEditMode} labelValue="Nome completo" onChange={e => updateState("name", e.target.value)} value={profile.name} />
+            <DatePicker disabled={!profile.inEditMode} labelValue="Data de nascimento" onChange={e => updateState("birthdate", e.toString())} value={profile.birthdate} />
+            <Input disabled={!profile.inEditMode} labelValue="Número de telefone" onChange={e => updatePhoneNumber(e.target.value)} value={profile.phoneNumber} />
+            <Input disabled={!profile.inEditMode} labelValue="Código postal (CEP)" onChange={e => updateZipCode(e.target.value)} value={profile.zipCode} />
+            <Input disabled={!profile.inEditMode} labelValue="Cadastro de pessoa física (CPF)" onChange={e => updateRealId(e.target.value)} value={profile.realId} />
         </div>
     )
 }

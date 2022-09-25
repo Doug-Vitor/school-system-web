@@ -20,6 +20,7 @@ const initialState = {
         subjectsIds: [''],
         classroomsIds: [''],
         userId: getStorageUser()?.authenticatedUserId,
+        inEditMode: false
     },
     profiles: <Array<ITeacher>>[]
 }

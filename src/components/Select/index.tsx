@@ -10,6 +10,7 @@ export interface SelectOption {
 interface Props {
     defaultLabel?: string
     options: Array<SelectOption>
+    disabled?: boolean
     selectedId?: string
     onChange: ChangeEventHandler<HTMLSelectElement>
 }
@@ -20,7 +21,7 @@ export default (props: Props) => {
         options.map(value => <option key={value.id} value={value.id}>{value.optionText}</option>)
 
     return (
-        <select defaultValue={selectedId || ''} onChange={onChange}>
+        <select disabled={props.disabled ?? false} defaultValue={selectedId || ''} onChange={onChange}>
             <option>{defaultLabel ?? "Selecione uma opção"}</option>
             {getSelectOptions()}
         </select>

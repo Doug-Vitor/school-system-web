@@ -29,7 +29,7 @@ export const saveProfileAsync = (teacher: ITeacher): any => {
             dispatch(onRequest());
             const data = teacher.id ? await updateProfile(teacher) : await createProfile(teacher);
             showMessage("Perfil atualizado com sucesso. Obrigado!", "success")
-            dispatch(updateProfileAction(data));
+            dispatch(updateProfileAction({ ...data, inEditMode: false }));
         } finally { dispatch(onRequestFinished()) }
     }
 }

@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
+
+import { updateProfile } from "../../store/Teachers";
 import { getAuthenticatedProfileAsync, saveProfileAsync } from "../../store/Teachers/promises";
 
 import { FormEvent, useEffect } from "react";
@@ -29,7 +31,7 @@ export default () => {
 
     const onSubmit = (event: FormEvent) => {
         event.preventDefault();
-        dispatch(saveProfileAsync(profile))
+        dispatch(saveProfileAsync(profile));
     };
 
     return (
@@ -41,9 +43,12 @@ export default () => {
                     <PersonalDatas />
                     <SchoolDatas />
                 </div>
-
-                <Button type="submit" className="btn-success" text="Salvar informações" />
+                {profile.inEditMode ? <Button type="submit" className="btn-success" text="Salvar informações" /> : false}
             </form>
+            {
+                profile.inEditMode ? false :
+                    <Button type="button" className="btn-info" onClick={() => dispatch(updateProfile({ ...profile, inEditMode: true }))} text="Editar perfil" />
+            }
         </article >
     );
 }
