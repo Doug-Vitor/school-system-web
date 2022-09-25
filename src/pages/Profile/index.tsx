@@ -1,4 +1,8 @@
-import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store";
+import { getAuthenticatedProfileAsync, saveProfileAsync } from "../../store/Teachers/promises";
+
+import { FormEvent, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { info } from "toastr";
@@ -10,21 +14,36 @@ import Button from "../../components/Button";
 
 import './index.scss';
 export default () => {
-    const [searchQuery, _] = useSearchParams();
+    const { ownsTeacherProfile } = useSelector((state: RootState) => state.auth);
+    const { profile } = useSelector((state: RootState) => state.teachers);
 
+    const [searchQuery, _] = useSearchParams();
     useEffect(() => {
         if (searchQuery.get("shouldCreateProfile")) info("Você precisa criar o seu perfil para usar as funcionalidades do sistema.");
     }, [searchQuery]);
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (ownsTeacherProfile) dispatch(getAuthenticatedProfileAsync())
+    }, [ownsTeacherProfile])
+
+    const onSubmit = (event: FormEvent) => {
+        event.preventDefault();
+        dispatch(saveProfileAsync(profile))
+    };
 
     return (
         <article className="profile-container">
             <PageTitle text="Meu perfil" />
 
-            <form>
-                <PersonalDatas />
-                <SchoolDatas />
+            <form onSubmit={onSubmit}>
+                <div className="form-container">
+                    <PersonalDatas />
+                    <SchoolDatas />
+                </div>
+
+                <Button type="submit" className="btn-success" text="Salvar informações" />
             </form>
-            <Button type="submit" className="btn-success" text="Salvar informações" />
         </article >
     );
 }
