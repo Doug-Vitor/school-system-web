@@ -15,7 +15,7 @@ export default (props: Props) => {
     
     const navigate = useNavigate();
     
-    if (!ownsTeacherProfile) navigate('/Profile'); 
+    if (!ownsTeacherProfile) navigate('/Profile?shouldCreateProfile=true'); 
     if (token.generatedToken && new Date(token.expirationDate).valueOf() > new Date().valueOf()) return props.children;
     else dispatch(logout("/Authentication?loginRequired=true"));
     return null;

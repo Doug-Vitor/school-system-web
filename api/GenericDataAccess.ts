@@ -37,7 +37,7 @@ const get = async <TResponse>(requestPayload: IDefaultRequestPayload, id?: strin
         });
 });
 
-const update = async <TBody, TResponse>(requestPayload: IDefaultRequestPayload, id: string, object: TBody): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
+const update = async <TBody, TResponse>(requestPayload: IDefaultRequestPayload, object: TBody, id?: string): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
     const payload = getRequestPayload(requestPayload);
     payload.url += id ?? '';
     api.patch(payload.url, object, { headers: payload.headers })
@@ -60,11 +60,13 @@ const remove = async <TResponse>(requestPayload: IDefaultRequestPayload, id: str
 });
 
 const getRequestPayload = (requestPayload: IDefaultRequestPayload) => {
+    const { url, protectedArea } = requestPayload;
+
     const payload = {
-        url: requestPayload.url,
-        ...requestPayload.protectedArea && {
+        url: protectedArea ? 'protected/' + url : url,
+        ...protectedArea && {
             headers: {
-                Authorization: getStorageUser().token.generatedToken
+                Authorization: 'Bearer ' + getStorageUser().token.generatedToken
             }
         }
     }

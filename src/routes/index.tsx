@@ -1,4 +1,7 @@
 import authRoutes from './authentication';
 import errorsRoutes from './errors';
 
-export default new Array().concat(authRoutes, errorsRoutes);
+import privateRoutes from './private';
+
+export const publicRoutes = new Array().concat(authRoutes, errorsRoutes);
+export { privateRoutes };

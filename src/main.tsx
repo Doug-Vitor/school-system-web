@@ -4,6 +4,5 @@ import store from './store';
 
 import App from './App'
 import './globals.scss';
-import { getStorageUser } from '../services/AuthServices';
 
 createRoot(document.getElementById('root') as HTMLElement).render(<Provider store={store}><App /></Provider>);

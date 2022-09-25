@@ -1,11 +1,19 @@
 import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
+import loading from './Loading';
 import auth from './Authentication/';
+import teachers from "./Teachers";
+import subject from './Subjects'
+import classroom from './Classrooms'
 
 const store = configureStore({
     reducer: {
-        auth
+        loading,
+        auth,
+        teachers,
+        subject,
+        classroom
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware({
         serializableCheck: false

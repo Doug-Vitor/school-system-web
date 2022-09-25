@@ -27,7 +27,7 @@ const auth = createSlice({
 
         signup(state, action: PayloadAction<IAuthenticatedInfos>) {
             state = { ...action.payload }
-            onAuthSuccess(action.payload);
+            onAuthSuccess(action.payload, "/Profile?shouldCreateProfile=true");
         },
 
         logout(state, action?: PayloadAction<string>) {
