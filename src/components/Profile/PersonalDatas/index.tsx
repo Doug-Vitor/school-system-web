@@ -3,7 +3,7 @@ import { RootState } from "../../../store";
 
 import { updateProfile } from "../../../store/Teachers";
 
-import Input from "../../Input";
+import Input, { DatePicker } from "../../Input";
 
 export default () => {
     const { profile } = useSelector((state: RootState) => state.teachers);
@@ -35,11 +35,10 @@ export default () => {
             updateState("realId", maskedRealId);
         }
     }
-
     return (
         <div className="personal-datas-container">
             <Input labelValue="Nome completo" onChange={e => updateState("name", e.target.value)} value={profile.name} />
-            <Input labelValue="Data de nascimento" onChange={e => updateState("birthdate", e.target.value)} value={profile.birthdate} />
+            <DatePicker labelValue="Data de nascimento" onChange={e => updateState("birthdate", e.toString())} value={profile.birthdate} />
             <Input labelValue="Número de telefone" onChange={e => updatePhoneNumber(e.target.value)} value={profile.phoneNumber} />
             <Input labelValue="Código postal (CEP)" onChange={e => updateZipCode(e.target.value)} value={profile.zipCode} />
             <Input labelValue="Cadastro de pessoa física (CPF)" onChange={e => updateRealId(e.target.value)} value={profile.realId} />

@@ -13,7 +13,7 @@ const initialState = {
     profile: <ITeacher>{
         id: '',
         name: '',
-        birthdate: undefined,
+        birthdate: new Date(),
         phoneNumber: '',
         realId: '',
         zipCode: '',

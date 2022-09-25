@@ -39,7 +39,6 @@ const get = async <TResponse>(requestPayload: IDefaultRequestPayload, id?: strin
 
 const update = async <TBody, TResponse>(requestPayload: IDefaultRequestPayload, object: TBody, id?: string): Promise<IDefaultResponse<TResponse>> => new Promise((resolve, reject) => {
     const payload = getRequestPayload(requestPayload);
-    console.log(payload)
     payload.url += id ?? '';
     api.patch(payload.url, object, { headers: payload.headers })
         .then(resp => resolve(resp.data))
