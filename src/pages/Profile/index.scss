@@ -17,10 +17,10 @@ article.profile-container {
             display: flex;
             align-items: center;
             justify-content: space-evenly;
-        }
 
-        @media (max-width: 600px) {
-            flex-direction: column;
+            @media (max-width: 600px) {
+                flex-direction: column;
+            }
         }
     }
 }
