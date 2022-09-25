@@ -19,7 +19,7 @@ const initialState = {
         zipCode: '',
         subjectsIds: [''],
         classroomsIds: [''],
-        userId: getStorageUser().authenticatedUserId,
+        userId: getStorageUser()?.authenticatedUserId,
     },
     profiles: <Array<ITeacher>>[]
 }
@@ -39,7 +39,6 @@ const auth = createSlice({
 
         decrementArray(state, action: PayloadAction<IUpdateArrayPayload>) {
             const { index, key } = action.payload;
-            console.log(index, state.profile[key][index]);
             if (state.profile[key].length > 1) state.profile[key].splice(index, 1)
         },
 

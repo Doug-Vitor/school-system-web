@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from "react-redux";
-import showMessage from "../../../../services/ToastrServices";
 import { RootState } from "../../../store";
 
 import { updateProfile } from "../../../store/Teachers";
@@ -48,4 +47,4 @@ export default () => {
     )
 }
 
-const ensureIsNotMasked = (masked: string, baseMask: string) => masked.substring(0, masked.length-1).length !== baseMask.length;
+const ensureIsNotMasked = (masked: string, baseMask: string) => masked.substring(0, masked.length - 1).length !== baseMask.length;

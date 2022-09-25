@@ -16,13 +16,12 @@ interface Props {
 
 export default (props: Props) => {
     const { defaultLabel, selectedId, options, onChange } = props;
-
     const getSelectOptions = () =>
-        options.map(value => <option key={value.id} defaultChecked={value.id === selectedId} value={value.id}>{value.optionText}</option>)
+        options.map(value => <option key={value.id} value={value.id}>{value.optionText}</option>)
 
     return (
-        <select onChange={onChange}>
-            <option defaultChecked={selectedId === ''}>{defaultLabel ?? "Selecione uma opção"}</option>
+        <select defaultValue={selectedId || ''} onChange={onChange}>
+            <option>{defaultLabel ?? "Selecione uma opção"}</option>
             {getSelectOptions()}
         </select>
     )
