@@ -6,7 +6,7 @@ import { getAllAsync } from "../../../store/Classrooms/promises";
 import { decrementArray, incrementArray, IUpdateArrayPayload, updateArray } from "../../../store/Teachers";
 
 import Select, { SelectOption } from "../../Select";
-import DynamicActions from "../../Form/DynamicActions";
+import DynamicActions from "../../Button/DynamicActions";
 
 export default () => {
     const { classroomsIds } = useSelector((state: RootState) => state.teachers.profile);

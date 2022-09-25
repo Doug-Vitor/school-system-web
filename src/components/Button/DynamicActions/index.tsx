@@ -1,8 +1,9 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRectangleXmark, faSquarePlus } from '@fortawesome/free-regular-svg-icons'
-import { MouseEventHandler } from 'react'
+import { MouseEventHandler } from 'react';
 
-import './DynamicActions.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRectangleXmark, faSquarePlus } from '@fortawesome/free-regular-svg-icons';
+
+import './index.scss';
 
 interface Props {
     onPlusClick: MouseEventHandler
