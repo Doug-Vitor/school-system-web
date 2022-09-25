@@ -1,6 +1,7 @@
 import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
+import loading from './Loading';
 import auth from './Authentication/';
 import teachers from "./Teachers";
 import subject from './Subjects'
@@ -8,6 +9,7 @@ import classroom from './Classrooms'
 
 const store = configureStore({
     reducer: {
+        loading,
         auth,
         teachers,
         subject,

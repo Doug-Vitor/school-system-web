@@ -7,8 +7,10 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 
 import './App.scss';
+import Loader from './components/Loader';
 export default () =>
     <BrowserRouter>
+        <Loader />
         <Navbar />
 
         <main>

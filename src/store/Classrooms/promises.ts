@@ -1,9 +1,10 @@
 import { AppDispatch } from "..";
 import { getAll } from ".";
 
-import IDefaultRequestPayload from "../../../core/Interfaces/API/Requests/IDefaultRequestPayload";
 import { get } from "../../../api/GenericDataAccess";
+import { onRequest, onRequestFinished } from "../Loading";
 
+import IDefaultRequestPayload from "../../../core/Interfaces/API/Requests/IDefaultRequestPayload";
 import IClassroom from '../../../core/Interfaces/Entities/Core/IClassroom';
 
 const BASE_URL = 'classrooms/';
@@ -15,6 +16,9 @@ const requestPayload: IDefaultRequestPayload = {
 
 export const getAllAsync = (): any => {
     return async function (dispatch: AppDispatch) {
-        dispatch(getAll((await get<IClassroom[]>(requestPayload)).data));
+        dispatch(onRequest());
+        get<IClassroom[]>(requestPayload).then(response => {
+            dispatch(getAll(response.data));
+        }).finally(() => dispatch(onRequestFinished()));
     }
 }
