@@ -14,7 +14,6 @@ import PersonalDatas from "../../components/Profile/PersonalDatas";
 import SchoolDatas from "../../components/Profile/SchoolDatas";
 import Button from "../../components/Button";
 
-import './index.scss';
 export default () => {
     const { ownsTeacherProfile } = useSelector((state: RootState) => state.auth);
     const { profile } = useSelector((state: RootState) => state.teachers);

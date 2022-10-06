@@ -3,8 +3,6 @@ import { MouseEventHandler } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRectangleXmark, faSquarePlus } from '@fortawesome/free-regular-svg-icons';
 
-import './index.scss';
-
 interface Props {
     onPlusClick: MouseEventHandler
     onDeleteClick: MouseEventHandler
