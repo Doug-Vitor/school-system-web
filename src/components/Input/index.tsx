@@ -3,7 +3,6 @@ import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
 import Datetime from 'react-datetime';
 
 import "react-datetime/css/react-datetime.css";
-import './index.scss';
 
 interface Props {
     value: any

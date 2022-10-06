@@ -1,5 +1,3 @@
-import './NotFound.scss';
-
 export default () =>
     <article>
         <h2 className='text-danger'>Algo deu errado!</h2>

@@ -1,5 +1,4 @@
 import { MouseEventHandler } from "react"
-import './index.scss';
 
 interface Props {
     text: string

@@ -13,8 +13,6 @@ import Button from "../../components/Button";
 
 import updateState from '../../helpers/state';
 
-import './index.scss';
-
 const initialState: IUser = {
     username: '',
     password: '',
