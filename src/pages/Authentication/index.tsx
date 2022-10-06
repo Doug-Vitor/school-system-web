@@ -50,7 +50,7 @@ export default () => {
                 <Input onChange={event => updateState(user, "username", event.target.value, setUser)} value={user.username} labelValue="Nome de usuário:" />
                 <Input type="password" onChange={event => updateState(user, "password", event.target.value, setUser)} value={user.password} labelValue="Senha:" />
             
-                <Button type="submit" className="btn-success" text="Confirmar" /> 
+                <Button type="submit" className="success" text="Confirmar" /> 
             </form>
         </article>
     );

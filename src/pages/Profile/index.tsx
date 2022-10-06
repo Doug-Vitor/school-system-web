@@ -42,11 +42,11 @@ export default () => {
                     <PersonalDatas />
                     <SchoolDatas />
                 </div>
-                {profile.inEditMode ? <Button type="submit" className="btn-success" text="Salvar informações" /> : false}
+                {profile.inEditMode ? <Button type="submit" className="success" text="Salvar informações" /> : false}
             </form>
             {
                 profile.inEditMode ? false :
-                    <Button type="button" className="btn-info" onClick={() => dispatch(updateProfile({ ...profile, inEditMode: true }))} text="Editar perfil" />
+                    <Button type="button" className="info" onClick={() => dispatch(updateProfile({ ...profile, inEditMode: true }))} text="Editar perfil" />
             }
         </article >
     );
