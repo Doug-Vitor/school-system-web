@@ -1,0 +1,18 @@
+select {
+    margin-bottom: 3.6vh !important;
+    padding: 4px !important;
+
+    border-color: red !important;
+    border-bottom: thin solid !important;
+    outline: none !important;
+    
+    background-color: transparent !important;
+    
+    transition: .5s !important;
+
+    &:focus {
+        border-radius: 4px !important;
+        border-bottom: none !important; 
+        box-shadow: 3px 3px 16px var(--shadow-color) !important;
+    }
+}

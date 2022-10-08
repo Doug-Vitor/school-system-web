@@ -5,7 +5,7 @@ import { RootState } from "../../../store"
 import { getAllAsync } from "../../../store/Subjects/promises";
 import { decrementArray, incrementArray, IUpdateArrayPayload, updateArray } from "../../../store/Teachers";
 
-import Select, { SelectOption } from "../../Select";
+import Select, { SelectOption } from "../../Input/Select";
 import DynamicActions from "../../Button/DynamicActions";
 
 export default () => {
