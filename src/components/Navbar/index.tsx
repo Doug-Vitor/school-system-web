@@ -5,7 +5,7 @@ import AuthenticationItems from './Items/Authentication';
 import { flex } from '../../styles';
 
 export default () =>
-    <nav className={`${flex} bg-primary-main text-white md:h-[10vh] mb-[3.5vh] px-[8vh] [&>*>*]:m-[1vh] [&>*>*]:cursor-pointer`}>
+    <nav className={`${flex} shadow-2xl bg-primary-main text-white md:h-[10vh] mb-[3.5vh] px-[8vh] [&>*>*]:m-[1vh] [&>*>*]:cursor-pointer`}>
         <Brand />
         <MainItems />
         <AuthenticationItems />
