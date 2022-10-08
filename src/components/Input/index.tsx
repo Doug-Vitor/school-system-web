@@ -1,9 +1,8 @@
 import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
+import { flex } from "../../styles";
 
 import Datetime from 'react-datetime';
-
 import "react-datetime/css/react-datetime.css";
-import { flex } from "../../styles";
 
 interface Props {
     value: any
@@ -17,7 +16,7 @@ export default function Input(props: Props) {
     return (
         <div className={`${flex} mb-[3.6vh]`}>
             <label>{props.labelValue}</label>
-            <input type={props.type ?? "text"} className="transition ease-in p-[9px] w-[100%] my-[0.6vw] bg-transparent border-0 border-b-[1px] border-black outline-none focus:rounded-[4px] focus:border-none focus:shadow-lg" disabled={props.disabled ?? false} value={props.value} onChange={props.onChange} />
+            <input type={props.type ?? "text"} className="transition ease-in p-[9px] w-[100%] mx-[0.6vw] bg-transparent border-0 border-b-[1px] border-black outline-none focus:rounded-[4px] focus:border-none focus:shadow-lg" disabled={props.disabled ?? false} value={props.value} onChange={props.onChange} />
         </div>
     )
 }
