@@ -3,23 +3,21 @@ import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
 import Datetime from 'react-datetime';
 
 import "react-datetime/css/react-datetime.css";
+import { flex } from "../../styles";
 
 interface Props {
     value: any
     type?: HTMLInputTypeAttribute
     onChange: ChangeEventHandler<HTMLInputElement>
-    inputClassName?: string
     disabled?: boolean
     labelValue: string
-    labelClassName?: string
 }
 
 export default function Input(props: Props) {
-
     return (
-        <div className="form-group">
-            <label className={props.labelClassName}>{props.labelValue}</label>
-            <input type={props.type ?? "text"} className={props.inputClassName} disabled={props.disabled ?? false} value={props.value} onChange={props.onChange} />
+        <div className={`${flex} mb-[3.6vh]`}>
+            <label>{props.labelValue}</label>
+            <input type={props.type ?? "text"} className="transition ease-in p-[9px] w-[100%] my-[0.6vw] bg-transparent border-0 border-b-[1px] border-black outline-none focus:rounded-[4px] focus:border-none focus:shadow-lg" disabled={props.disabled ?? false} value={props.value} onChange={props.onChange} />
         </div>
     )
 }
@@ -28,6 +26,6 @@ export const DatePicker = (props: Props) =>
     props.disabled ?
         Input({...props, value: new Date(props.value).toLocaleDateString()}) :
         <div className="form-group">
-            <label className={props.labelClassName}>{props.labelValue}</label>
+            <label>{props.labelValue}</label>
             <Datetime onChange={props.onChange} dateFormat="DD/MM/YYYY" timeFormat={false} value={new Date(props.value)} />
         </div>
