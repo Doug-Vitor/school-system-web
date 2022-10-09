@@ -8,7 +8,7 @@ import DatePicker from "./DatePicker";
 const Input = (props: IInputProperties) =>
     <FormGroup>
         <label className={label}>{props.labelValue}</label>
-        <input type={props.type ?? "text"} className={input} disabled={props.disabled ?? false} value={props.value} onChange={props.onChange} />
+        <input type={props.type ?? "text"} className={input} disabled={props.disabled ?? false} value={props.value} onChange={props.onChange} onBlur={props.onBlur} />
     </FormGroup>;
 
 export default Input;
