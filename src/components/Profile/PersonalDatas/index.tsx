@@ -36,7 +36,7 @@ export default () => {
         }
     }
     return (
-        <div className="w-[33%]">
+        <div className="w-[100%] md:w-[33%]">
             <Input disabled={!profile.inEditMode} labelValue="Nome completo" onChange={e => updateState("name", e.target.value)} value={profile.name} />
             <DatePicker disabled={!profile.inEditMode} labelValue="Data de nascimento" onChange={e => updateState("birthdate", e.toString())} value={profile.birthdate} />
             <Input disabled={!profile.inEditMode} labelValue="Número de telefone" onChange={e => updatePhoneNumber(e.target.value)} value={profile.phoneNumber} />
