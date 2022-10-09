@@ -13,7 +13,7 @@ interface Props {
 }
 
 const getCommonClasses = (size?: FormSize) => {
-    const classes = `${flex} flex-col bg-[#e7e7e7d2] w-[20%] rounded-[2%] shadow-custom px-[4vh] pt-[4vh] pb-[8vh]`;
+    const classes = `${flex} flex-col bg-[#e7e7e7d2] w-[20%] rounded-[2%] shadow-custom px-[4vh] pt-[4vh] pb-[6vh]`;
 
     switch (size) {
         case "medium": return classes + " !w-[50%]";

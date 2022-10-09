@@ -36,7 +36,7 @@ export default () => {
 
     return (
         <Form onSubmit={event => event.preventDefault()} title="Meu perfil" className="px-[2vw]" size="large">
-            <div className={`${flex} justify-evenly`}>
+            <div className={`${flex} justify-around`}>
                 <PersonalDatas />
                 <SchoolDatas />
             </div>
