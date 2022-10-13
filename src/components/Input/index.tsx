@@ -1,34 +1,15 @@
-import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
+import IInputProperties from "./common/IProperties";
 
-import Datetime from 'react-datetime';
+import { input, label } from "../../styles/form";
+import FormGroup from "./common/FormGroup";
+import Select from "./Select";
+import DatePicker from "./DatePicker";
 
-import "react-datetime/css/react-datetime.css";
-import './index.scss';
+const Input = (props: IInputProperties) =>
+    <FormGroup>
+        <label className={label}>{props.labelValue}</label>
+        <input type={props.type ?? "text"} className={input} disabled={props.disabled ?? false} value={props.value} onChange={props.onChange} onBlur={props.onBlur} />
+    </FormGroup>;
 
-interface Props {
-    value: any
-    type?: HTMLInputTypeAttribute
-    onChange: ChangeEventHandler<HTMLInputElement>
-    inputClassName?: string
-    disabled?: boolean
-    labelValue: string
-    labelClassName?: string
-}
-
-export default function Input(props: Props) {
-
-    return (
-        <div className="form-group">
-            <label className={props.labelClassName}>{props.labelValue}</label>
-            <input type={props.type ?? "text"} className={props.inputClassName} disabled={props.disabled ?? false} value={props.value} onChange={props.onChange} />
-        </div>
-    )
-}
-
-export const DatePicker = (props: Props) =>
-    props.disabled ?
-        Input({...props, value: new Date(props.value).toLocaleDateString()}) :
-        <div className="form-group">
-            <label className={props.labelClassName}>{props.labelValue}</label>
-            <Datetime onChange={props.onChange} dateFormat="DD/MM/YYYY" timeFormat={false} value={new Date(props.value)} />
-        </div>
+export default Input;
+export { Select, DatePicker };

@@ -40,15 +40,19 @@ const auth = createSlice({
 
         decrementArray(state, action: PayloadAction<IUpdateArrayPayload>) {
             const { index, key } = action.payload;
-            if (state.profile[key].length > 1) state.profile[key].splice(index, 1)
+            state.profile[key].splice(index, 1);
         },
 
         updateArray(state, action: PayloadAction<IUpdateArrayPayload>) {
             const { index, key, value } = action.payload;
             if (value) state.profile[key][index] = value;
+        },
+
+        resetArray(state, action: PayloadAction<IUpdateArrayPayload>) {
+            state.profile[action.payload.key] = [];
         }
     }
 });
 
-export const { updateProfile, incrementArray, decrementArray, updateArray } = auth.actions;
+export const { updateProfile, incrementArray, decrementArray, updateArray, resetArray } = auth.actions;
 export default auth.reducer;

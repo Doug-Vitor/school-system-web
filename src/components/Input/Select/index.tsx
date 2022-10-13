@@ -1,6 +1,5 @@
 import { ChangeEventHandler } from "react"
-
-import './index.scss'
+import './index.scss';
 
 export interface SelectOption {
     id: string

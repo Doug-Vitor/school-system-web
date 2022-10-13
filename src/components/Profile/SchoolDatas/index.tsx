@@ -1,9 +1,10 @@
 import Subjects from './Subjects';
 import Classrooms from './Classrooms';
 
-import './SchoolDatas.scss';
+import { flex } from '../../../styles';
+
 export default () =>
-   <div className="school-datas-container">
-      <div className="subjects"><Subjects /></div>
-      <div className="classrooms"><Classrooms /></div>
+   <div className={`${flex} flex-col !justify-around w-[100%] md:flex-row md:w-[66%]`}>
+      <Subjects />
+      <Classrooms />
    </div>

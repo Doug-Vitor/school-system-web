@@ -1,12 +1,12 @@
 import { MouseEventHandler } from "react"
-import './index.scss';
+import * as classes from '../../styles/button';
 
 interface Props {
     text: string
     type?: "button" | "submit"
-    className?: "btn-success" | "btn-info" | "btn-danger"
+    className?: "success" | "info" | "danger"
     onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
 export default (props: Props) => 
-    <button type={props.type ?? "button"} className={"btn " + props.className} onClick={props.onClick}>{props.text}</button>
+    <button type={props.type ?? "button"} className={classes[props.className ?? 'button']} onClick={props.onClick}>{props.text}</button>
