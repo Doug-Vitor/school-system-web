@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "../../../store"
 import { getAllAsync } from "../../../store/Subjects/promises";
-import { decrementArray, incrementArray, IUpdateArrayPayload, updateArray } from "../../../store/Teachers";
+import { decrementArray, incrementArray, IUpdateArrayPayload, updateArray, resetArray } from "../../../store/Teachers";
 
 import Select, { SelectOption } from "../../Input/Select";
 import DynamicActions from "../../Button/DynamicActions";
+import Header from "./shared/Header";
 
 export default () => {
     const { inEditMode, subjectsIds } = useSelector((state: RootState) => state.teachers.profile);
@@ -20,24 +21,32 @@ export default () => {
         optionText: subject.theme
     }));
 
+    const Actions = (props: { payload: IUpdateArrayPayload }) =>
+        inEditMode ? <DynamicActions
+            shouldRenderPlusIcon={subjectsIds.length <= 2}
+            shouldRenderDeleteIcon={subjectsIds.length && subjectsIds[0] ? true : false}
+            onPlusClick={() => dispatch(incrementArray(props.payload))}
+            onDeleteClick={() => dispatch(decrementArray(props.payload))}
+        /> : <></>;
+
+    const getSubjects = (subjectId: string, index: number) => {
+        const payload: IUpdateArrayPayload = { key: "subjectsIds", index }
+
+        return (
+            <div key={subjectId}>
+                <Select disabled={!inEditMode} onChange={e => { dispatch(updateArray({ ...payload, value: e.target.value })) }} options={options} defaultLabel="Selecionar matéria." selectedId={subjectId} />
+                {subjectId && <Actions payload={payload} />}
+            </div>
+        )
+    }
+
+    const defaultPayload: IUpdateArrayPayload = { index: 0, key: "subjectsIds" }
     return (
         <div>
-            {subjectsIds.map((subjectId, index) => {
-                const payload: IUpdateArrayPayload = { key: "subjectsIds", index }
-
-                return (
-                    <div key={subjectId}>
-                        <Select disabled={!inEditMode} onChange={e => { dispatch(updateArray({ ...payload, value: e.target.value })) }} options={options} defaultLabel="Selecionar matéria." selectedId={subjectId} />
-                        {
-                            inEditMode ?
-                                <DynamicActions
-                                    onPlusClick={() => dispatch(incrementArray(payload))}
-                                    onDeleteClick={() => dispatch(decrementArray(payload))}
-                                /> : false
-                        }
-                    </div>
-                )
-            })}
+            <Header title="Matérias" showButton={inEditMode && subjectsIds.length > 1} onDeleteClick={() => dispatch(resetArray(defaultPayload))} />
+            {
+                subjectsIds.length ? subjectsIds.map(getSubjects) : <Actions payload={defaultPayload} />
+            }
         </div>
     );
 }
